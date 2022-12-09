@@ -6,26 +6,44 @@
       xmlns:local="clr-namespace:CarServiceL.View.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Подай на 16" Height="450" Width="800" 
-     >
-      
-
+     Title="Список услуг">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="75"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
-        <Rectangle Grid.Row="0" Fill="{StaticResource SecondColor}"></Rectangle>
-        <Rectangle Grid.Row="2" Fill="{StaticResource SecondColor}"></Rectangle>
 
-        <Image Source="Assets/Images/service_logo.png"
-               Width="100" HorizontalAlignment="Left
-               "></Image>
-        <Button Name="BtnBack" Click="BtnBackClick"/>
-        <TextBlock Text="Current Header"
-                   Style="{StaticResource BlockHeader}"/>
+        <ListView Grid.Row="2" Name="LViewServices">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding MainImage}"></Image>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Style="{StaticResource BlockCommon}" Width="auto"
+                                           Text="{Binding Title}"></TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Редактировать" Name="BtnEdit"
+                                            Click="BtnEdit_Click"></Button>
+                                        <Button Content="Удалить" Name="BtnDelete"
+                                                Click="BtnDelete_Click"></Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Grid.Row="3" HorizontalAlignment="Right"
+                Name="BtnAddService" Click="BtnAddService_Click"
+                Content="Добавить услугу"></Button>
     </Grid>
-    
 </Page>
     
